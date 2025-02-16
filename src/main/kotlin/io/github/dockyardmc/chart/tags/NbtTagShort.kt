@@ -1,6 +1,6 @@
-package io.github.dockyardmc.lodestone.tags
+package io.github.dockyardmc.chart.tags
 
-import io.github.dockyardmc.lodestone.BinaryTag
+import io.github.dockyardmc.chart.BinaryTag
 import io.netty.buffer.ByteBuf
 
 class NbtTagShort(val value: Short): BinaryTag {

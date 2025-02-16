@@ -1,6 +1,6 @@
-package io.github.dockyardmc.lodestone
+package io.github.dockyardmc.chart
 
-import io.github.dockyardmc.lodestone.tags.*
+import io.github.dockyardmc.chart.tags.*
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.reflect.KClass
 
@@ -18,6 +18,7 @@ object NbtTagRegistry {
     val TAG_FLOAT = register(NbtTagFloat::class)
     val TAG_DOUBLE = register(NbtTagDouble::class)
     val TAG_BYTE_ARRAY = register(NbtTagByteArray::class)
+    val TAG_LIST = register(NbtTagList::class)
 
     fun getFromIdOrNull(id: Int): KClass<out BinaryTag>? {
         return tags[id]

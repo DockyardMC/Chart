@@ -1,7 +1,7 @@
-package io.github.dockyardmc.lodestone.tags
+package io.github.dockyardmc.chart.tags
 
-import io.github.dockyardmc.lodestone.BinaryTag
-import io.github.dockyardmc.lodestone.NbtTagRegistry
+import io.github.dockyardmc.chart.BinaryTag
+import io.github.dockyardmc.chart.NbtTagRegistry
 import io.netty.buffer.ByteBuf
 
 class NbtTagList<T: BinaryTag>(val values: Collection<T>): BinaryTag {

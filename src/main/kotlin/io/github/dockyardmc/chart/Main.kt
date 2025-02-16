@@ -1,4 +1,4 @@
-package io.github.dockyardmc.lodestone
+package io.github.dockyardmc.chart
 
 fun main() {
     println("Hello World!")
