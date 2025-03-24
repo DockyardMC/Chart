@@ -1,13 +1,14 @@
 package io.github.dockyardmc.chart.tags
 
 import io.github.dockyardmc.chart.BinaryTag
+import io.github.dockyardmc.chart.BinaryTagReadable
 import io.netty.buffer.ByteBuf
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
 import java.io.DataOutputStream
 
-class NbtTagString(val value: String): BinaryTag {
+class BinaryTagString(val value: String): BinaryTag {
 
     override fun write(buffer: ByteBuf) {
         val outputStream = ByteArrayOutputStream()
@@ -20,12 +21,12 @@ class NbtTagString(val value: String): BinaryTag {
         return "\"$escaped\""
     }
 
-    companion object {
-        fun read(buffer: ByteBuf): NbtTagString {
+    companion object: BinaryTagReadable<BinaryTagString> {
+        override fun read(buffer: ByteBuf): BinaryTagString {
             val inputStream = ByteArrayInputStream(buffer.copy().array())
             val string = DataInputStream(inputStream).readUTF()
 
-            return NbtTagString(string)
+            return BinaryTagString(string)
         }
     }
 }

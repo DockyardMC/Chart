@@ -1,13 +1,15 @@
 package io.github.dockyardmc.chart.tags
 
 import io.github.dockyardmc.chart.BinaryTag
+import io.github.dockyardmc.chart.BinaryTagReadable
 import io.netty.buffer.ByteBuf
 
-class NbtTagByte(val value: Byte): BinaryTag {
+class BinaryTagByte(val value: Byte): BinaryTag {
 
     constructor(value: Boolean): this(if(value) 1 else 0)
 
     fun toBoolean(): Boolean = value != 0.toByte()
+    fun toInt(): Int = value.toInt()
 
     override fun write(buffer: ByteBuf) {
         buffer.writeByte(value.toInt())
@@ -17,12 +19,12 @@ class NbtTagByte(val value: Byte): BinaryTag {
         return "${value}B"
     }
 
-    companion object {
-        val ONE = NbtTagByte(1)
-        val ZERO = NbtTagByte(1)
+    companion object: BinaryTagReadable<BinaryTagByte> {
+        val ONE = BinaryTagByte(1)
+        val ZERO = BinaryTagByte(0)
 
-        fun read(buffer: ByteBuf): NbtTagByte {
-            return NbtTagByte(buffer.readByte())
+        override fun read(buffer: ByteBuf): BinaryTagByte {
+            return BinaryTagByte(buffer.readByte())
         }
     }
 }

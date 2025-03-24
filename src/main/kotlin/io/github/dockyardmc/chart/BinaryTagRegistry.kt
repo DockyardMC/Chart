@@ -4,21 +4,21 @@ import io.github.dockyardmc.chart.tags.*
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.reflect.KClass
 
-object NbtTagRegistry {
+object BinaryTagRegistry {
 
     private val tags: MutableMap<Int, KClass<out BinaryTag>> = mutableMapOf()
     private val reversed: MutableMap<KClass<out BinaryTag>, Int> = mutableMapOf()
     private val protocolIdCounter = AtomicInteger()
 
-    val TAG_END = register(NbtTagEnd::class)
-    val TAG_BYTE = register(NbtTagByte::class)
-    val TAG_SHORT = register(NbtTagShort::class)
-    val TAG_INT = register(NbtTagInt::class)
-    val TAG_LONG = register(NbtTagLong::class)
-    val TAG_FLOAT = register(NbtTagFloat::class)
-    val TAG_DOUBLE = register(NbtTagDouble::class)
-    val TAG_BYTE_ARRAY = register(NbtTagByteArray::class)
-    val TAG_LIST = register(NbtTagList::class)
+    val TAG_END = register(BinaryTagEnd::class)
+    val TAG_BYTE = register(BinaryTagByte::class)
+    val TAG_SHORT = register(BinaryTagShort::class)
+    val TAG_INT = register(BinaryTagInt::class)
+    val TAG_LONG = register(BinaryTagLong::class)
+    val TAG_FLOAT = register(BinaryTagFloat::class)
+    val TAG_DOUBLE = register(BinaryTagDouble::class)
+    val TAG_BYTE_ARRAY = register(BinaryTagByteArray::class)
+    val TAG_LIST = register(BinaryTagList::class)
 
     fun getFromIdOrNull(id: Int): KClass<out BinaryTag>? {
         return tags[id]

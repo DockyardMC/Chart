@@ -1,9 +1,10 @@
 package io.github.dockyardmc.chart.tags
 
 import io.github.dockyardmc.chart.BinaryTag
+import io.github.dockyardmc.chart.BinaryTagReadable
 import io.netty.buffer.ByteBuf
 
-class NbtTagFloat(val value: Float): BinaryTag {
+class BinaryTagFloat(val value: Float): BinaryTag {
 
     override fun write(buffer: ByteBuf) {
         buffer.writeFloat(value)
@@ -13,9 +14,9 @@ class NbtTagFloat(val value: Float): BinaryTag {
         return "${value}F"
     }
 
-    companion object {
-        fun read(buffer: ByteBuf): NbtTagFloat {
-            return NbtTagFloat(buffer.readFloat())
+    companion object: BinaryTagReadable<BinaryTagFloat> {
+        override fun read(buffer: ByteBuf): BinaryTagFloat {
+            return BinaryTagFloat(buffer.readFloat())
         }
     }
 }

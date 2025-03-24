@@ -1,10 +1,11 @@
 package io.github.dockyardmc.chart.tags
 
 import io.github.dockyardmc.chart.BinaryTag
+import io.github.dockyardmc.chart.BinaryTagReadable
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 
-class NbtTagByteArray(val value: ByteBuf): BinaryTag, Iterable<Byte> {
+class BinaryTagByteArray(val value: ByteBuf): BinaryTag, Iterable<Byte> {
 
     constructor(value: ByteArray): this(Unpooled.copiedBuffer(value))
 
@@ -28,7 +29,7 @@ class NbtTagByteArray(val value: ByteBuf): BinaryTag, Iterable<Byte> {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as NbtTagByteArray
+        other as BinaryTagByteArray
 
         return value.copy().array() contentEquals other.value.copy().array()
     }
@@ -41,10 +42,10 @@ class NbtTagByteArray(val value: ByteBuf): BinaryTag, Iterable<Byte> {
         return value.copy().array().iterator()
     }
 
-    companion object {
-        fun read(buffer: ByteBuf): NbtTagByteArray {
+    companion object: BinaryTagReadable<BinaryTagByteArray> {
+        override fun read(buffer: ByteBuf): BinaryTagByteArray {
             val size = buffer.readInt()
-            return NbtTagByteArray(buffer.readBytes(size))
+            return BinaryTagByteArray(buffer.readBytes(size))
         }
     }
 }
